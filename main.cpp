@@ -6,6 +6,10 @@
 #include <vector>
 #include <algorithm>
 
+// Судя по содержимому это вершина, Vertex или Node. Принято назыать Node
+// Нужно другой подход реализовать - более каноничный
+// у тебя есть Node которая ссылается на другие Node (список указателей) и Graph это просто список нодов
+// Функция IsTree просто отдельная. Классы можно просто сделать структурами.
 class Graph {
 protected:
     int V;
@@ -58,14 +62,16 @@ public:
 int main() {
     std::string line;
     std::ifstream file("/Users/grpmgk/Desktop/untitled folder/Project/Project/file.txt");
-    if (!file) {
-        std::cerr << "Ошибка при открытии файла." << std::endl;
+    // 1 Тут кажется можно было относительный путь укзаТЬ, например file.txt 
+    if (!file) {    // Хм, не знал что такая проверка работает
+        std::cerr << "Ошибка при открытии файла." << std::endl; // Пиши комменты на английском
         return 1;
     }
 
     int maxVertex = 0;
     std::vector<std::pair<int, int>> edges;
 
+    // В принципе норм парсинг, в xml тебе придется по символьно парсить...
     while (getline(file, line)) {
         std::istringstream iss(line);
         int v1, v2;
